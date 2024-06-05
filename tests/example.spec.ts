@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('has value 2', async ({ page }) => {
+test.beforeEach('Open start URL', async ({ page }) => {
+  console.log(`Running ${test.info().title}`);
   await page.goto('http://localhost:5173/');
+});
+test('has value 2', async ({ page }) => {
   const buttonToClick = await page.locator("#counterButton");
   await buttonToClick.click({clickCount: 2});
 
